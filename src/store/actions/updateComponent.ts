@@ -1,9 +1,17 @@
 import { IStoreState } from '../store';
 import { ITextEntry, ILogoEntry, ICanvasEntry } from '../interfaces/CanvasEntries';
 import { IUpdateLogoEntries, IUpdateTextEntries } from '../interfaces/Actions';
+import { CANVAS_SIZE } from '../../atoms/Canvas';
 
 function isTextEntry(entry: ITextEntry | ILogoEntry): entry is ITextEntry {
   return (<ITextEntry>entry).text !== undefined;
+}
+
+function clamp(x: number, y: number, width: number, height: number) {
+  return [
+    Math.min(Math.max(x, 0), CANVAS_SIZE - width),
+    Math.min(Math.max(y, 0), CANVAS_SIZE - height),
+  ];
 }
 
 const getPaylaod = <T extends ICanvasEntry>(
@@ -18,7 +26,13 @@ const getPaylaod = <T extends ICanvasEntry>(
     ...entries,
     {
       ...entry,
-      position: [entryToModify.position[0] + delta[0], entryToModify.position[1] + delta[1]],
+      position: [
+        ...clamp(
+          entryToModify.position[0] + delta[0],
+          entryToModify.position[1] + delta[1],
+          ...entryToModify.size,
+        ),
+      ],
     },
   ];
 };

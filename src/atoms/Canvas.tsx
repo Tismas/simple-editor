@@ -21,7 +21,7 @@ interface IProps {}
 type Position = [number, number];
 export type Selection = ITextEntry | ILogoEntry | null;
 
-const CANVAS_SIZE = 400;
+export const CANVAS_SIZE = 400;
 
 export const Canvas: React.FunctionComponent<IProps> = () => {
   const { state, dispatch } = React.useContext<IContextValue>(StoreContext);
@@ -41,8 +41,9 @@ export const Canvas: React.FunctionComponent<IProps> = () => {
     setMouseDown(true);
     repositionHandlerMouseDown(e, setSelectedComponent, textEntries, logoEntries);
   };
-  const _repositionHandlerMouseMove = (e: React.MouseEvent) =>
+  const _repositionHandlerMouseMove = (e: React.MouseEvent) => {
     repositionHandlerMouseMove(e, state, dispatch, selectedComponent, isMouseDown);
+  };
   const _repositionHandlerMouseUp = (e: React.MouseEvent) => {
     setMouseDown(false);
   };
@@ -71,7 +72,7 @@ export const Canvas: React.FunctionComponent<IProps> = () => {
     const canvas: HTMLCanvasElement = canvasRef.current;
     if (canvas && !canvasLoading) {
       const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
-      drawBackground(ctx, activeBackground.image, CANVAS_SIZE);
+      drawBackground(ctx, activeBackground, CANVAS_SIZE);
       drawLogos(ctx, logoEntries);
       drawTexts(ctx, textEntries);
       updateOutputImageUrl(dispatch, canvas);

@@ -1,9 +1,13 @@
+import { IImage } from '../../store/interfaces/Image';
+
 export const drawBackground = async (
   ctx: CanvasRenderingContext2D,
-  background: HTMLImageElement,
+  background: IImage,
   canvasSize: number,
 ) => {
-  if (background === null) {
+  if (background && background.image) {
+    ctx.drawImage(background.image, 0, 0, 400, 400);
+  } else {
     ctx.fillStyle = '#f9f9f9';
     ctx.fillRect(0, 0, 400, 400);
 
@@ -17,7 +21,5 @@ export const drawBackground = async (
       ctx.lineTo(i, -10);
       ctx.stroke();
     }
-  } else {
-    ctx.drawImage(background, 0, 0, 400, 400);
   }
 };
