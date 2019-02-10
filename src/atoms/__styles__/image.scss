@@ -1,0 +1,37 @@
+.image {
+  display: block;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.fake-image-small {
+  @extend .image;
+  background: $placeholder-color;
+  width: 75px;
+  height: 75px;
+  margin: 5px;
+}
+
+.image-small {
+  @extend .image;
+  max-width: 75px;
+  max-height: 75px;
+  margin: 5px;
+}
+
+.fake-image-big {
+  @extend .image;
+  background: $placeholder-color;
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+}
+
+.image-big {
+  @extend .image;
+  max-width: 150px;
+  max-height: 150px;
+  margin: 10px;
+}

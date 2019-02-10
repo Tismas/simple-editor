@@ -1,0 +1,13 @@
+.label {
+  padding-right: 10px;
+}
+
+.label-small {
+  @extend .label;
+  font-size: 0.8em;
+}
+
+.label-big {
+  @extend .label;
+  font-size: 1.5em;
+}

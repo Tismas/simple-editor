@@ -1,0 +1,19 @@
+.button {
+  background: $primary-color;
+  border: 1px solid $secondary-color;
+  border-radius: $border-radius;
+  &:hover {
+    background: $dark-grey;
+  }
+}
+
+.button-small {
+  @extend .button;
+  padding: 5px 20px;
+  font-size: 0.8em;
+}
+
+.button-big {
+  @extend .button;
+  padding: 10px 10px;
+}
